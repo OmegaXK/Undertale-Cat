@@ -1,11 +1,12 @@
 #Undertale Cat
+#By Collin Maryniak (omegaxk314@gmail.com)
 
 import pygame, sys, random
 from pygame.locals import *
 
 pygame.init()
 
-#Set up
+#Constants
 
 basicfont = pygame.font.SysFont(None, 48)
 
@@ -31,11 +32,27 @@ CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 PURPLE =  (128, 0, 128)
 
+#Constants
+BASICFONT = pygame.font.SysFont(None, 48)
+TEXTCOLOR = GREEN
+MAINCLOCK = pygame.time.Clock()
+MOVESPEED = 8
+
+#Set up player
 player = pygame.Rect(300, 100, 40, 40)
 playerimage = pygame.image.load('Resources/Cat pixel art 16x16.png')
 playerstretchedimage = pygame.transform.scale(playerimage, (size, size))
 
-TEXTCOLOR = GREEN
+#Movement variables
+moveleft = False
+moveright = False
+moveup = False
+movedown = False
+
+pygame.mixer.music.load('Resources/Megalovania piano (1).wav')
+pygame.mixer.music.play(-1, 0.0)
+musicplaying = True
+
 
 def drawtext(text, font, surface, x, y, color):
     textobj = font.render(text, 1, color)
@@ -43,18 +60,6 @@ def drawtext(text, font, surface, x, y, color):
     textrect.topleft = (x, y)
     surface.blit(textobj, textrect)
 
-mainclock = pygame.time.Clock()
-
-moveleft = False
-moveright = False
-moveup = False
-movedown = False
-
-MOVESPEED = 8
-
-pygame.mixer.music.load('Resources/Megalovania piano (1).wav')
-pygame.mixer.music.play(-1, 0.0)
-musicplaying = True
 
 #Game Loop
 while True:
@@ -133,9 +138,9 @@ while True:
     windowsurface.blit(playerstretchedimage, player)
 
     #Draw the text
-    drawtext('Cats are cute!', basicfont, windowsurface, 5, 5, PURPLE)
-    drawtext(f'Speed: {MOVESPEED}', basicfont, windowsurface, 725, 5, GREEN) 
+    drawtext('Cats are cute!', BASICFONT, windowsurface, 5, 5, PURPLE)
+    drawtext(f'Speed: {MOVESPEED}', BASICFONT, windowsurface, 725, 5, GREEN)
 
     #Update
     pygame.display.update()
-    mainclock.tick(40)
+    MAINCLOCK.tick(40)
