@@ -40,7 +40,7 @@ MOVESPEED = 8
 
 #Set up player
 player = pygame.Rect(300, 100, 40, 40)
-playerimage = pygame.image.load('Resources/Cat pixel art 16x16.png')
+playerimage = pygame.image.load('Resources/Cat pixel art 16x16.png').convert_alpha()
 playerstretchedimage = pygame.transform.scale(playerimage, (size, size))
 
 #Movement variables
